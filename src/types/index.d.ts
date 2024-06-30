@@ -2344,6 +2344,7 @@ export interface LegendElement<TType extends ChartType> extends Element<AnyObjec
   ctx: CanvasRenderingContext2D;
   legendItems?: LegendItem[];
   options: LegendOptions<TType>;
+  fit(): void;
 }
 
 export interface LegendOptions<TType extends ChartType> {
@@ -2404,11 +2405,6 @@ export interface LegendOptions<TType extends ChartType> {
      * @default fontSize
      */
     boxHeight: number;
-    /**
-     * Padding between the color box and the text
-     * @default 1
-     */
-    boxPadding: number;
     /**
      * Color of label
      * @see Defaults.color
@@ -3815,7 +3811,7 @@ export interface ChartConfiguration<
 > {
   type: TType;
   data: ChartData<TType, TData, TLabel>;
-  options?: ChartOptions<TType>;
+  options?: ChartOptions<TType> | undefined;
   plugins?: Plugin<TType>[];
   platform?: typeof BasePlatform;
 }
@@ -3826,6 +3822,6 @@ export interface ChartConfigurationCustomTypesPerDataset<
   TLabel = unknown
 > {
   data: ChartDataCustomTypesPerDataset<TType, TData, TLabel>;
-  options?: ChartOptions<TType>;
+  options?: ChartOptions<TType> | undefined;
   plugins?: Plugin<TType>[];
 }
